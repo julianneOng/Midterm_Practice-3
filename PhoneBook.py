@@ -1,28 +1,28 @@
-class Contact_Book:
+class Phone_Book:
     def __init__(self):
         self.__data = {}  
     
-    def addContact(self, name = None,  phone_number = None):
+    def addphonebook(self, name = None,  phone_number = None):
             if phone_number not in self.__data:
                 self.__data[phone_number] = [name, phone_number]
-                print("Added successfully")
+                print("Contact added successfully")
             else:
                 print("Name and Phone Number already exists")
         
 
 
-    def deleteContact(self, phone_number = None):
-        if phone_number != None:
-            if phone_number in self.__data:
-                del self.__data[phone_number]
-                print("Deleted successfully")
+    def deletephonebook(self, name = None):
+        if name != None:
+            if name not in self.__data:
+                print("Contact deleted successfully")
+                del self.__data[name]
             else:
                 print("Contact not found.")
         
 
     
 
-    def searchContact(self, query = None, sort_field = None):
+    def searchphonebook(self, query = None, sort_field = None):
         if query != None:
             search_arr = []
             for key, val in self.__data.items():
@@ -41,7 +41,7 @@ class Contact_Book:
             indx = 0
             if sort_field == "name":
                 indx = 0
-           
+            indx = 1
             if sort_field == "phone_number":
                 indx = 1
             
@@ -53,16 +53,16 @@ class Contact_Book:
     def console(self):
         while True:
             try:
-                print("\n1. Add contact\n2. Look up contact\n3. Delete contact\n4. Exit")
+                print("Phone Book:\n1. Add contact\n2. Look up contact\n3. Delete contact\n4. Exit")
                 n = int(input("Enter your choice: "))
                 if n == 1:
-                    name = input("Name: ")
-                    phone_number = input("Phone Number: ")
+                    name = input("Enter contact name: ")
+                    phone_number = input("Enter phone number: ")
                     if len(name) == 0:
                         name = None
                     if len(phone_number) == 0:
                         phone_number = None
-                    self.addContact(name, phone_number)
+                    self.addphonebook(name, phone_number)
                     
                 
                 
@@ -73,13 +73,14 @@ class Contact_Book:
                         query = None
                     if len(sort_by) == 0:
                         sort_by = None
-                    self.searchContact(query, sort_by)
+                    self.searchphonebook(query, sort_by)
 
                 if n == 3:
-                    phone_number = input("Phone Number: ")
-                    if len(phone_number) == 0:
-                        phone_number = None
-                    self.deleteContact(phone_number)
+                    name = input("Enter contact name: ")
+                    if len(name) == 0:
+                        name = None
+                       
+                    self.deletephonebook(name)
                 
                 if n == 4:
                     break
@@ -89,5 +90,5 @@ class Contact_Book:
 
 
 
-contact_book = Contact_Book()
-contact_book.console()
+phone_book = Phone_Book()
+phone_book.console()
